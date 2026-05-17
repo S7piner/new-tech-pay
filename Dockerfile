@@ -17,8 +17,15 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
 
-
+# Permissions Laravel
+RUN mkdir -p storage/framework/sessions
+RUN mkdir -p storage/framework/cache
+RUN mkdir -p storage/framework/views
+RUN chmod -R 777 storage bootstrap/cache
 
 EXPOSE 10000
 
-CMD php artisan config:clear && php artisan cache:clear && php artisan serve --host=0.0.0.0 --port=10000
+CMD php artisan config:clear && \
+    php artisan cache:clear && \
+    php artisan view:clear && \
+    php artisan serve --host=0.0.0.0 --port=10000
