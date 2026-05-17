@@ -25,8 +25,6 @@ RUN mkdir -p storage/framework/views
 
 RUN chmod -R 777 storage bootstrap/cache
 
-RUN cp public/.htaccess /var/www/html/public/.htaccess
-
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
