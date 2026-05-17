@@ -3,8 +3,9 @@ FROM php:8.2-cli
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
-    libpq-dev \
-    zip
+    zip \
+    curl \
+    libpq-dev
 
 RUN docker-php-ext-install pdo pdo_pgsql
 
@@ -17,8 +18,6 @@ COPY . .
 RUN composer install --no-dev --optimize-autoloader
 
 RUN cp .env.example .env
-
-RUN php artisan key:generate
 
 EXPOSE 10000
 
