@@ -41,14 +41,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware('web')->group(function () {
-
-    Route::resource(
-        'entreprises',
-        EntrepriseController::class
-    );
-
-});
+Route::resource(
+    'entreprises',
+    EntrepriseController::class
+);
 
 Route::resource('employes', EmployeController::class);
 
